@@ -19,8 +19,8 @@ public class Main {
         print("Testing the method isNull()");
         String name = "Brilliant";
         String empty = "";
-        print("The name object is null: "  + isNull(name));
-        print("The empty object is null: "  + isNull(empty));
+        print("The name object is null: "  + isNull(""));
+        print("The empty object is null: "  + isNull(""));
 
         printStars();
         print("Testing the Name class...");

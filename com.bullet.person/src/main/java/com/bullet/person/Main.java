@@ -7,5 +7,8 @@ public class Main {
         Name myName = new Name("Trevor");
         Person person = new Person(myName, Gender.MALE);
         System.out.println(person); // Trevor MALE
+        Gender rudzi = Gender.MALE;
+        // print the gender as a string
+        System.out.println(rudzi.name());
     }
 }

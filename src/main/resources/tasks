@@ -1,0 +1,6 @@
+roles-authorization
+        admin;hr;general;support;
+        change user role;delete user;create user;update user;read user
+        change user status;authorize pay increase;
+account payment strategy(70%usd, 30%zig)
+        fixed/percent;net salary;currency
