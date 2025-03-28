@@ -7,4 +7,5 @@ module com.bullet.employee {
     requires com.bullet.names;
     requires com.bullet.utils;
     requires com.bullet.address;
+    requires java.sql;
 }

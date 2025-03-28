@@ -10,6 +10,7 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
         how the employee earnings are determined.
     *
     * */
+    private long payrollID;
     private Employee employee;
     private String employeeNumber;
     private String department;
@@ -18,6 +19,8 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
     private String branch;
     private EmployeeGrade grade;
     private Currency currency;
+    private PaymentType paymentType;
+    private PaymentTypeStrategy paymentTypeStrategy;
 
     private float hourlyRate;
     private float hoursWorked;
@@ -37,6 +40,14 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
     }
 
     /**************     BEGIN GETTER AND SETTER METHODS     ******/
+
+    public long getPayrollID() {
+        return payrollID;
+    }
+
+    public void setPayrollID(long payrollID) {
+        this.payrollID = payrollID;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -103,6 +114,14 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
         this.currency = currency;
     }
 
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
     public float getHourlyRate() {
         return hourlyRate;
     }
@@ -153,6 +172,22 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
 
     public double getBasicSalary() {
         return basicSalary;
+    }
+
+    public PaymentTypeStrategy getPaymentTypeStrategy() {
+        return paymentTypeStrategy;
+    }
+
+    public void setPaymentTypeStrategy(PaymentTypeStrategy paymentTypeStrategy) {
+        this.paymentTypeStrategy = paymentTypeStrategy;
+    }
+
+    public void setPaymentTypeStrategy(PaymentType paymentType) {
+        switch (paymentType) {
+            case MONTHLY -> this.paymentTypeStrategy = new MonthlySalaryStrategy();
+            case DAILY -> this.paymentTypeStrategy = new DailySalaryStrategy();
+            case HOURLY -> this.paymentTypeStrategy = new HourlySalaryStrategy();
+        }
     }
 
     public void setBasicSalary(double basicSalary) {

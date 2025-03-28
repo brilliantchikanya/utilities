@@ -1,5 +1,6 @@
 package com.bullet.employee;
 
+import static com.bullet.employee.strategy.PaymentType.DAILY;
 import static com.bullet.person.Gender.MALE;
 import static com.bullet.employee.strategy.FixedOrPercent.FIXED;
 import static com.bullet.employee.strategy.FixedOrPercent.PERCENTAGE;
@@ -7,11 +8,15 @@ import static com.bullet.employee.strategy.PreOrPost.POSTTAX;
 import static com.bullet.employee.strategy.PreOrPost.PRETAX;
 import static com.bullet.employee.strategy.Qualify.YES;
 import static com.bullet.employee.strategy.Qualify.NO;
+import static com.bullet.employee.strategy.PaymentType.MONTHLY;
 
 
 import com.bullet.employee.strategy.*;
 import com.bullet.person.Gender;
 import com.bullet.person.MyDate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeSampleData {
     public static void main(String[] args) {
@@ -60,6 +65,8 @@ public class EmployeeSampleData {
 
 
         /************    DEDUCTION OBJECTS   **********   */
+        // create a list of deduction objects
+        List<Deduction> deductions = new ArrayList<>();
 
         // create a deduction object
         Deduction paye = new Deduction("PAYE-(INCOME TAX)");
@@ -67,6 +74,7 @@ public class EmployeeSampleData {
         paye.setFixedOrPercent(PERCENTAGE);
         paye.setPreOrPostTax(POSTTAX);
         paye.setDeductionId(1);
+        deductions.add(paye);
 
         // PSMAS
         Deduction psmas = new Deduction("PSMAS-(MEDICAL AID)");
@@ -74,6 +82,8 @@ public class EmployeeSampleData {
         psmas.setFixedOrPercent(FIXED);
         psmas.setPreOrPostTax(PRETAX);
         psmas.setDeductionId(2);
+        deductions.add(psmas);
+
 
         // NYARADZO
         Deduction nyaradzo = new Deduction("NYARADZO-(FUNERAL ASSURANCE)");
@@ -81,6 +91,7 @@ public class EmployeeSampleData {
         nyaradzo.setFixedOrPercent(FIXED);
         nyaradzo.setPreOrPostTax(PRETAX);
         nyaradzo.setDeductionId(3);
+        deductions.add(nyaradzo);
 
         // ZIMNAT LIFE
         Deduction zimnat = new Deduction("ZIMNAT-(LIFE ASSURANCE)");
@@ -88,6 +99,7 @@ public class EmployeeSampleData {
         zimnat.setFixedOrPercent(FIXED);
         zimnat.setPreOrPostTax(PRETAX);
         zimnat.setDeductionId(4);
+        deductions.add(zimnat);
 
         // AIDS_LEVY
         Deduction aids_levy = new Deduction("AIDS_LEVY");
@@ -95,6 +107,7 @@ public class EmployeeSampleData {
         aids_levy.setFixedOrPercent(FixedOrPercent.PERCENTAGE);
         aids_levy.setPreOrPostTax(POSTTAX);
         aids_levy.setDeductionId(5);
+        deductions.add(aids_levy);
 
 
         // NEC
@@ -103,6 +116,7 @@ public class EmployeeSampleData {
         nec.setFixedOrPercent(PERCENTAGE);
         nec.setPreOrPostTax(POSTTAX);
         nec.setDeductionId(6);
+        deductions.add(nec);
 
         // CHILD SUPPORT
         Deduction childSupport = new Deduction("CHILD SUPPORT");
@@ -110,6 +124,7 @@ public class EmployeeSampleData {
         childSupport.setFixedOrPercent(FIXED);
         childSupport.setPreOrPostTax(POSTTAX);
         childSupport.setDeductionId(7);
+        deductions.add(childSupport);
 
 
 
@@ -119,25 +134,47 @@ public class EmployeeSampleData {
         unionFees.setFixedOrPercent(PERCENTAGE);
         unionFees.setPreOrPostTax(POSTTAX);
         unionFees.setDeductionId(8);
+        deductions.add(unionFees);
 
-/***********    END  OF DEDUCTION OBJETCS   ********************/
+        //System.out.println(deductions);
+        System.out.println();
+        System.out.println();
+        System.out.println("/***************        DEDUCTIONS       ***************/");
+        System.out.println();
+        for (Deduction deduction : deductions) {
+            System.out.println("ID: " + deduction.getDeductionId());
+            System.out.println("Name: " + deduction.getDeductionName());
+            System.out.println("Payment Type: " + deduction.getFixedOrPercent());
+            System.out.println("Pre or Post: " + deduction.getPreOrPostTax());
+            System.out.println();
+            System.out.println();
+
+        }
+        System.out.println("/***************       END OF DEDUCTIONS       ***************/");
+
+
+        /***********    END  OF DEDUCTION OBJETCS   ********************/
 
 /*************** PAYROLL ADMINISTRATION     ********************/
 
         /**********  EMPLOYEE DEDUCTIONS  *****/
 
 
+        //create a list of deductions for our employee
+        List<EmployeeDeductions> employeeDeductions = new ArrayList<>();
+
         // get first deduction - PAYEE
         EmployeeDeductions payee_deduction = new EmployeeDeductions(employee);
         payee_deduction.setId(1);
         payee_deduction.setEmployeeId(employee.getEmployeeID());
         payee_deduction.setDeductionId(1);
-        payee_deduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        payee_deduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         payee_deduction.getBaseAmount();/* TODO*/
         payee_deduction.setAmount(0);
         payee_deduction.setPercent(45);
         payee_deduction.setBaseAmount(1000); /* TODO */
         payee_deduction.setIsQualify(YES);
+        employeeDeductions.add(payee_deduction);
 
         // second deduction
         EmployeeDeductions psmasDeduction = new EmployeeDeductions(employee);
@@ -148,21 +185,22 @@ public class EmployeeSampleData {
         psmasDeduction.getBaseAmount();      //need to be calculated- pretax earnings
         psmasDeduction.setAmount(15);
         psmasDeduction.setPercent(0);
-        payee_deduction.setBaseAmount(0); /* TODO */
+        psmasDeduction.setBaseAmount(0); /* TODO */
         psmasDeduction.setIsQualify(YES);
-
+        employeeDeductions.add(psmasDeduction);
 
         // get third deduction - NYARADZO
         EmployeeDeductions nyaradzoDeduction = new EmployeeDeductions(employee);
         nyaradzoDeduction.setId(3);
         nyaradzoDeduction.setEmployeeId(employee.getEmployeeID());
         nyaradzoDeduction.setDeductionId(3);
-        nyaradzoDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        nyaradzoDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         nyaradzoDeduction.getBaseAmount();/* TODO*/
         nyaradzoDeduction.setAmount(12);
         nyaradzoDeduction.setPercent(0);
-        payee_deduction.setBaseAmount(0); /* TODO */
+        nyaradzoDeduction.setBaseAmount(0); /* TODO */
         nyaradzoDeduction.setIsQualify(YES);
+        employeeDeductions.add(nyaradzoDeduction);
 
 
         // get fourth deduction - ZIMNAT
@@ -170,12 +208,13 @@ public class EmployeeSampleData {
         zimnatDeduction.setId(4);
         zimnatDeduction.setEmployeeId(employee.getEmployeeID());
         zimnatDeduction.setDeductionId(4);
-        zimnatDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        zimnatDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         zimnatDeduction.getBaseAmount();/* TODO*/
         zimnatDeduction.setAmount(15);
         zimnatDeduction.setPercent(0);
-        payee_deduction.setBaseAmount(0); /* TODO */
+        zimnatDeduction.setBaseAmount(0); /* TODO */
         zimnatDeduction.setIsQualify(YES);
+        employeeDeductions.add(zimnatDeduction);
 
 
         // get fifth deduction - AIDS LEVY
@@ -183,12 +222,13 @@ public class EmployeeSampleData {
         aidsLevy.setId(5);
         aidsLevy.setEmployeeId(employee.getEmployeeID());
         aidsLevy.setDeductionId(5);
-        aidsLevy.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        aidsLevy.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         aidsLevy.getBaseAmount();/* TODO*/
         aidsLevy.setAmount(0);
         aidsLevy.setPercent(0.5f);
         aidsLevy.setBaseAmount(1000); /* TODO */
         aidsLevy.setIsQualify(YES);
+        employeeDeductions.add(aidsLevy);
 
 
         // get sixth deduction - NEC
@@ -196,12 +236,13 @@ public class EmployeeSampleData {
         necDeduction.setId(6);
         necDeduction.setEmployeeId(employee.getEmployeeID());
         necDeduction.setDeductionId(6);
-        necDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        necDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         necDeduction.getBaseAmount();/* TODO*/
         necDeduction.setAmount(0);
         necDeduction.setPercent(1);
         necDeduction.setBaseAmount(1000); /* TODO */
         necDeduction.setIsQualify(YES);
+        employeeDeductions.add(necDeduction);
 
 
         // get seventh deduction - CHILD SUPPORT
@@ -209,12 +250,13 @@ public class EmployeeSampleData {
         childSupportDeduction.setId(7);
         childSupportDeduction.setEmployeeId(employee.getEmployeeID());
         childSupportDeduction.setDeductionId(7);
-        childSupportDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        childSupportDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         childSupportDeduction.getBaseAmount();/* TODO*/
         childSupportDeduction.setAmount(200);
         childSupportDeduction.setPercent(0);
         childSupportDeduction.setBaseAmount(0); /* TODO */
         childSupportDeduction.setIsQualify(NO);
+        employeeDeductions.add(childSupportDeduction);
 
 
         // get eighth deduction - UNION FEES
@@ -222,12 +264,40 @@ public class EmployeeSampleData {
         unionFeesDeduction.setId(8);
         unionFeesDeduction.setEmployeeId(employee.getEmployeeID());
         unionFeesDeduction.setDeductionId(8);
-        unionFeesDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/payee_deduction.getBaseAmount();      //need to be calculated- pretax earnings
+        unionFeesDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         unionFeesDeduction.getBaseAmount();/* TODO*/
         unionFeesDeduction.setAmount(0);
         unionFeesDeduction.setPercent(1);
         unionFeesDeduction.setBaseAmount(1000); /* TODO */
         unionFeesDeduction.setIsQualify(YES);
+        employeeDeductions.add(unionFeesDeduction);
+
+
+
+        //System.out.println(employee deductions);
+        System.out.println();
+        System.out.println();
+        System.out.println("/***************        EMPLOYEEE DEDUCTIONS       ***************/");
+        System.out.println();
+
+        System.out.println("Employee: " + employee.getEmployeeName());
+
+        for (EmployeeDeductions employeeDeduction : employeeDeductions) {
+            System.out.println("Payroll Date: " + employeeDeduction.getPayrollDate());
+            String ded_name = EmployeeSampleData.getDeductionName(employeeDeduction.getDeductionId(), deductions);
+            System.out.println("Deduction: " + ded_name);
+            System.out.println("Base Amount: " + employeeDeduction.getBaseAmount());
+            System.out.println("Rate: " + employeeDeduction.getPercent());
+            System.out.println("Amount: " + employeeDeduction.getAmount());
+            // TODO employeeDeduction.calculate();
+            System.out.println();
+            System.out.println();
+            //employeeDeduction.getDeductionId();
+
+        }
+        System.out.println("/***************       END OF EMPLOYEE DEDUCTIONS       ***************/");
+
+
 
 /************* END DEDUCTIONS       ******************/
 
@@ -258,20 +328,29 @@ public class EmployeeSampleData {
 
 /**************     PAYROLL DATA        ***********************/
 
-//        PaymentDetails payrollData = new PaymentDetails(employee);
-//        payrollData.setPayrollID(1);
-//        payrollData.setPayrollDate(payee_deduction.getPayrollDate());
-//        payrollData.setDaily_rate(25);
-//        float dailyRate = payrollData.getDaily_rate();
-//        payrollData.setDays_worked(25);
-//        int daysWorked = payrollData.getDays_worked();
-//        payrollData.setHourly_rate(0);
-//        payrollData.setHours_worked(0);
-//        payrollData.setStandardDays(20);
-//        float bonusDays = payrollData.getStandardHours();
-//
-//        System.out.println("Normal Days worked: " + payrollData.getNormalDays());
-//
+        // here we make use of the payment details table or data for an employee
+        EmployeePaymentDetails payrollData = new EmployeePaymentDetails(employee);
+        payrollData.setPayrollID(1);
+        payrollData.setPayrollDate(payee_deduction.getPayrollDate());
+        float dailyRate = payrollData.getDailyRate();
+        int daysWorked = payrollData.getDaysWorked();
+        payrollData.setPaymentType(DAILY);
+        payrollData.setPaymentTypeStrategy(payrollData.getPaymentType());
+        DailySalaryStrategy paymentTypeStrategy = new DailySalaryStrategy();
+        paymentTypeStrategy.setDailyRate(25);
+        paymentTypeStrategy.setDaysWorked(20);
+
+        payrollData.setDailyRate(25);
+        payrollData.setDaysWorked(25);
+        payrollData.setStandardDays(20);
+        System.out.println(" Payment Type Strategy: " + payrollData.getPaymentTypeStrategy().getPaymentDetails());
+        //double stdH = payrollData.getPaymentTypeStrategy().
+        double basic = payrollData.getBasicSalary();
+        float bonusDays = payrollData.getDaysWorked() - payrollData.getStandardDays();
+        System.out.println("Standard Days worked: " + payrollData.getStandardDays());
+        System.out.println("Bonus Days Worked: " + bonusDays);
+        System.out.println("Salary: " + basic);
+
 
 
 
@@ -298,5 +377,16 @@ public class EmployeeSampleData {
         *
         * */
 
+    }
+
+    /******
+        a method to extract the name property from a deduction object, whose id number is
+        equivalent to a provided id value, given a list of deduction objects
+     */
+    private static String getDeductionName(long deductionID, List<Deduction> deductionList) {
+        for (Deduction deduction : deductionList) {
+            if (deduction.getDeductionId() == deductionID) return deduction.getDeductionName();
+        }
+        return "";
     }
 }
