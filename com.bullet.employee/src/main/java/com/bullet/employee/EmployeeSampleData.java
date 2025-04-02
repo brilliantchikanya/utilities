@@ -331,7 +331,6 @@ public class EmployeeSampleData {
         // here we make use of the payment details table or data for an employee
         EmployeePaymentDetails payrollData = new EmployeePaymentDetails(employee);
         payrollData.setPayrollID(1);
-        payrollData.setPayrollDate(payee_deduction.getPayrollDate());
         float dailyRate = payrollData.getDailyRate();
         int daysWorked = payrollData.getDaysWorked();
         payrollData.setPaymentType(DAILY);

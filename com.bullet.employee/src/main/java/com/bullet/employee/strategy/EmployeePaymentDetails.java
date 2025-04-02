@@ -3,6 +3,7 @@ package com.bullet.employee.strategy;
 import com.bullet.employee.Employee;
 import com.bullet.person.MyDate;
 
+
 public class EmployeePaymentDetails implements PaymentDetailsInterface{
     /*
         This class handles all the contractual terms and agreement
@@ -29,8 +30,6 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
     private int daysWorked;
     private int standardDays;   //for determining overtime days
     private double basicSalary;
-    //private int normalDays;
-    private MyDate payrollDate;
 
     public EmployeePaymentDetails() {
         this.employee = new Employee();
@@ -55,6 +54,14 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public long getEmployeeID() {
+        return this.employee.getEmployeeID();
+    }
+
+    public void setEmployeeID(long employeeID) {
+        //TODO deal with the employeeID
     }
 
     public String getEmployeeNumber() {
@@ -194,13 +201,7 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
         this.basicSalary = basicSalary;
     }
 
-    public MyDate getPayrollDate() {
-        return payrollDate;
-    }
 
-    public void setPayrollDate(MyDate payrollDate) {
-        this.payrollDate = payrollDate;
-    }
 
     /**************     END GETTER AND SETTER METHODS     ******/
 
@@ -211,14 +212,7 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
         return 0;
     }
 
-    /**
-     @author: brilliant
-     a method to generate
-     */
-    @Override
-    public String generateEmployeeNumber() {
-        return "EMPLOYEE_NUMBER";
-    }
+}
 
 
 /**************     END IMPLEMENT INTERFACE METHODS     ******/
@@ -233,4 +227,4 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
 
 
 
-}
+

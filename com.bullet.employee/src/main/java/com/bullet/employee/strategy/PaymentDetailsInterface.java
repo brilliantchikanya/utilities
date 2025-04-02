@@ -4,7 +4,7 @@ public interface PaymentDetailsInterface {
 
     double basicEarnings();
 
-    String generateEmployeeNumber();
+    //String generateEmployeeNumber();
     /*
         this class is a POJO for the payment details of
         an employee, which stores salary calculation parameters.

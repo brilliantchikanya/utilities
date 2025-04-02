@@ -15,24 +15,32 @@ import java.util.Objects;
 public class Employee {
     private long employeeID;
     private Person person;
-    private String employeeNumber;
-    private static int emp_number;
+    //TODO the employeeNumber needs a relook
+    //private String employeeNumber;
+    private static int emp_number;  //for generating employee number
 
     // beginning of constructors
     public Employee() {
         this.person = new Person();
+        //this.employeeNumber = "";
     }
 
     public Employee(Person person) {
         this.person = person;
+        //this.employeeNumber = generateEmploymentNumber();
     }
     public Employee(String firstname, String lastname) {
         this.person = new Person(firstname, lastname);
+        //this.employeeNumber = generateEmploymentNumber();
     }
-    public Employee(String firtname) {this.person = new Person(firtname);}
+    public Employee(String firtname) {
+        this.person = new Person(firtname);
+        //this.employeeNumber = generateEmploymentNumber();
+    }
     public Employee(Person person, Gender gender) {
         this.person = person;
         this.person.setGender(gender);
+        //this.employeeNumber = generateEmploymentNumber();
 
     }// end constructor
 
@@ -47,14 +55,6 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
-
-//    public Gender getGender() {
-//        return this.person.getGender();
-//    }
-//
-//    public void setGender(Gender gender) {
-//        this.person.setGender(gender);
-//    }
 
     public String getEmployeeName() {
         return person.getName();
@@ -76,13 +76,20 @@ public class Employee {
         this.person.setLastName(lastname);
     }
 
-    public String getEmployeeNumber() {
-        return employeeNumber;
-    }
-
-    public void setEmployeeNumber() {
-        this.employeeNumber = generateEmploymentNumber();
-    }
+//    public String getEmployeeNumber() {
+//        if (employeeNumber == null || employeeNumber.isEmpty()) {
+//            return this.generateEmploymentNumber();
+//        }
+//        else {
+//            return employeeNumber;
+//        }
+//    }
+//
+//    public void setEmployeeNumber(String employeeNumber) {
+//        if (employeeNumber == null || employeeNumber.isEmpty()) {
+//            this.employeeNumber = employeeNumber;
+//        }
+//    }
 
     public void setEmployeeName(Name employeeName) {
         this.person.setName(employeeName);
@@ -105,52 +112,12 @@ public class Employee {
         this.person = person;
     }
 
-//    public String getEmployeeEmail() {
-//        return employeeEmail;
-//    }
-//
-//    public void setEmployeeEmail(String employeeEmail) {
-//        this.employeeEmail = employeeEmail;
-//    }
-//
-//    public String getEmployeePhoneNumber() {
-//        return employeePhoneNumber;
-//    }
-//
-//    public void setEmployeePhoneNumber(String employeePhoneNumber) {
-//        this.employeePhoneNumber = employeePhoneNumber;
-//    }
-//
-//    public String getEmployeeDepartment() {
-//        return employeeDepartment;
-//    }
-//
-//    public void setEmployeeDepartment(String employeeDepartment) {
-//        this.employeeDepartment = employeeDepartment;
-//    }
-//
-//    public String getJobTitle() {
-//        return jobTitle;
-//    }
-//
-//    public void setJobTitle(String jobTitle) {
-//        this.jobTitle = jobTitle;
-//    }
-
-//    public int getSalary() {
-//        return salary;
-//    }
-
-//    public void setSalary(int salary) {
-//        this.salary = salary;
-//    }
-
-
     @Override
     public String toString() {
         return person.getName();
     }
     /* there is need to check the correctness of the overridden methods above*/
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Employee employee)) return false;
@@ -229,42 +196,49 @@ public class Employee {
         person1.setGender(gender);
         person1.setName(new Name("Brilliant", "Chikanya"));
         employee.setPerson(person1);
-        employee.setEmployeeNumber();
+        //System.out.println("number: " + employee.getEmployeeNumber());
+        //employee.setEmployeeNumber("abc");
+
 
         System.out.println(person1);
         System.out.println(person1.getGender());
         System.out.println(person1.getFirstName());
         System.out.println(employee.getEmployeeGender());
-        System.out.println(employee.getEmployeeNumber());
+        //System.out.println(employee.getEmployeeNumber() + "   ...");
 
         Employee employee1 = new Employee("testing");
-        employee1.setEmployeeNumber();
+        //employee1.setEmployeeNumber();
         System.out.println();
         System.out.println();
         System.out.println(employee1.getEmployeeName());
-        System.out.println(employee1.getEmployeeNumber());
+        //System.out.println(employee1.getEmployeeNumber());
         System.out.println(emp_number);
     }
 
     private String generateEmploymentNumber() {
-        String prefix = "BSC";
-        if (emp_number < 10) {
+        String prefix = "BSC";  // can be changed or made custom
+        if (emp_number == 9) {
+            ++emp_number;
+            return prefix + "0010";
+        } else if (emp_number < 10) {
             return prefix + "000" + ++emp_number;
-        }
-        else if (emp_number == 10) {
-            return prefix +"0010" + ++emp_number;
-        }
-        else if (emp_number < 100) {
-            return prefix + "00" + ++emp_number;
-        } else if (emp_number == 100) {
+        }  else if (emp_number == 99) {
+            ++emp_number;
             return prefix + "0100";
+
+        } else if (emp_number < 100) {
+            return prefix + "00" + ++emp_number;
+        } else if (emp_number == 999) {
+            ++emp_number;
+            return prefix + "1000";
         } else if (emp_number < 1000) {
             return prefix + "0" + ++emp_number;
+
         } else if (emp_number < 10000) {
             return prefix + ++emp_number;
         }
         return prefix + ++emp_number;
-        //return prefix + emp_number;
 
     }
+
 }
