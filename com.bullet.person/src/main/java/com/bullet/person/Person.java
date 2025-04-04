@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Person implements PersonInterface{
     private Name name;
     private Gender gender;
-    private MyDate dateOfBirth;
+    private LocalDate dateOfBirth;
     private Address placeOfBirth;   //still work in progress
     String idNumber;
     MaritalStatus maritalStatus;
@@ -105,11 +105,11 @@ public class Person implements PersonInterface{
         this.gender = gender;
     }
 
-    public MyDate getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(MyDate dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }   // end of getter and setter methods
 
@@ -140,7 +140,7 @@ public class Person implements PersonInterface{
     public static void main(String[] args) {
         String fname="Brill", lname="Chiks";
         Person person = new Person(fname, lname);
-        person.setDateOfBirth(new MyDate());
+        person.setDateOfBirth(LocalDate.now());
         String name = person.getName();
         System.out.println(name);
         System.out.println(person.calculateAge(LocalDate.EPOCH));

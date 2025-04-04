@@ -3,13 +3,15 @@ package com.bullet.employee;
 import com.bullet.employee.strategy.Qualify;
 import com.bullet.person.MyDate;
 
+import java.time.LocalDate;
+
 public class EmployeeBenefits implements PayrollInterface{
     //POJO for the benefits table where employee payroll benefits are populated
     private long id;
     Employee employee;
     private long employeeId;
     private long benefitId; //employeeId, benefitId are the composite keys
-    private MyDate payrollDate;
+    private LocalDate payrollDate;
     private double amount;  //fixed amount benefit
     private float percent; //%age, if benefit is calculated on base amount
     private double baseAmount;  //base on which benefit amount is calculated
@@ -57,11 +59,11 @@ public class EmployeeBenefits implements PayrollInterface{
         this.benefitId = benefitId;
     }
 
-    public MyDate getPayrollDate() {
+    public LocalDate getPayrollDate() {
         return payrollDate;
     }
 
-    public void setPayrollDate(MyDate payrollDate) {
+    public void setPayrollDate(LocalDate payrollDate) {
         this.payrollDate = payrollDate;
     }
 

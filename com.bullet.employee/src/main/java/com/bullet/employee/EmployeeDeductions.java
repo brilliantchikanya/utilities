@@ -3,13 +3,15 @@ package com.bullet.employee;
 import com.bullet.employee.strategy.Qualify;
 import com.bullet.person.MyDate;
 
+import java.time.LocalDate;
+
 public class EmployeeDeductions implements PayrollInterface{
     //POJO for the deductions table where employee payroll deductions are populated
     private long id;
     Employee employee;
     private long employeeId;
     private long deductionId; //employeeId, deductionId, and payrolldate are the composite keys
-    private MyDate payrollDate;
+    private LocalDate payrollDate;
     private double amount;  //fixed amount deduction, if fixed
     private float percent; //%age, if deduction is calculated on base amount
     private double baseAmount;  //base on which deduction amount is calculated
@@ -88,11 +90,11 @@ public class EmployeeDeductions implements PayrollInterface{
         this.deductionId = deductionId;
     }
 
-    public MyDate getPayrollDate() {
+    public LocalDate getPayrollDate() {
         return payrollDate;
     }
 
-    public void setPayrollDate(MyDate payrollDate) {
+    public void setPayrollDate(LocalDate payrollDate) {
         this.payrollDate = payrollDate;
     }
 

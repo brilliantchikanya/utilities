@@ -15,6 +15,7 @@ import com.bullet.employee.strategy.*;
 import com.bullet.person.Gender;
 import com.bullet.person.MyDate;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,8 @@ public class EmployeeSampleData {
         System.out.println("Gender: " + employee.getEmployeeGender());
 
         // create two date objects
-        MyDate date = new MyDate(1968, 10, 13);
-        MyDate date1 = new MyDate(1988, 03, 04);
+        LocalDate date = MyDate.create(1968, 10, 13);
+        LocalDate date1 = MyDate.create(1988, 03, 04);
 
         // date joined
         employee_details.setDateJoined(date1);
@@ -56,7 +57,7 @@ public class EmployeeSampleData {
 
         // date of birth
         employee.getPerson().setDateOfBirth(date);
-        MyDate dob = employee.getPerson().getDateOfBirth();
+        LocalDate dob = employee.getPerson().getDateOfBirth();
         System.out.println("Date of birth: " + dob);
 
 
@@ -168,7 +169,7 @@ public class EmployeeSampleData {
         payee_deduction.setId(1);
         payee_deduction.setEmployeeId(employee.getEmployeeID());
         payee_deduction.setDeductionId(1);
-        payee_deduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        payee_deduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         payee_deduction.getBaseAmount();/* TODO*/
         payee_deduction.setAmount(0);
         payee_deduction.setPercent(45);
@@ -181,7 +182,7 @@ public class EmployeeSampleData {
         psmasDeduction.setId(2);
         psmasDeduction.setEmployeeId(employee.getEmployeeID());
         psmasDeduction.setDeductionId(2);
-        psmasDeduction.setPayrollDate(new MyDate(1988, 03, 31));
+        psmasDeduction.setPayrollDate(MyDate.create(1988, 03, 31));
         psmasDeduction.getBaseAmount();      //need to be calculated- pretax earnings
         psmasDeduction.setAmount(15);
         psmasDeduction.setPercent(0);
@@ -194,7 +195,7 @@ public class EmployeeSampleData {
         nyaradzoDeduction.setId(3);
         nyaradzoDeduction.setEmployeeId(employee.getEmployeeID());
         nyaradzoDeduction.setDeductionId(3);
-        nyaradzoDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        nyaradzoDeduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         nyaradzoDeduction.getBaseAmount();/* TODO*/
         nyaradzoDeduction.setAmount(12);
         nyaradzoDeduction.setPercent(0);
@@ -208,7 +209,7 @@ public class EmployeeSampleData {
         zimnatDeduction.setId(4);
         zimnatDeduction.setEmployeeId(employee.getEmployeeID());
         zimnatDeduction.setDeductionId(4);
-        zimnatDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        zimnatDeduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         zimnatDeduction.getBaseAmount();/* TODO*/
         zimnatDeduction.setAmount(15);
         zimnatDeduction.setPercent(0);
@@ -222,7 +223,7 @@ public class EmployeeSampleData {
         aidsLevy.setId(5);
         aidsLevy.setEmployeeId(employee.getEmployeeID());
         aidsLevy.setDeductionId(5);
-        aidsLevy.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        aidsLevy.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         aidsLevy.getBaseAmount();/* TODO*/
         aidsLevy.setAmount(0);
         aidsLevy.setPercent(0.5f);
@@ -236,7 +237,7 @@ public class EmployeeSampleData {
         necDeduction.setId(6);
         necDeduction.setEmployeeId(employee.getEmployeeID());
         necDeduction.setDeductionId(6);
-        necDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        necDeduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         necDeduction.getBaseAmount();/* TODO*/
         necDeduction.setAmount(0);
         necDeduction.setPercent(1);
@@ -250,7 +251,7 @@ public class EmployeeSampleData {
         childSupportDeduction.setId(7);
         childSupportDeduction.setEmployeeId(employee.getEmployeeID());
         childSupportDeduction.setDeductionId(7);
-        childSupportDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        childSupportDeduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         childSupportDeduction.getBaseAmount();/* TODO*/
         childSupportDeduction.setAmount(200);
         childSupportDeduction.setPercent(0);
@@ -264,7 +265,7 @@ public class EmployeeSampleData {
         unionFeesDeduction.setId(8);
         unionFeesDeduction.setEmployeeId(employee.getEmployeeID());
         unionFeesDeduction.setDeductionId(8);
-        unionFeesDeduction.setPayrollDate(new MyDate(1988, 03, 31));/**/      //need to be calculated- pretax earnings
+        unionFeesDeduction.setPayrollDate(MyDate.create(1988, 03, 31));/**/      //need to be calculated- pretax earnings
         unionFeesDeduction.getBaseAmount();/* TODO*/
         unionFeesDeduction.setAmount(0);
         unionFeesDeduction.setPercent(1);
@@ -322,7 +323,7 @@ public class EmployeeSampleData {
         bonusBenefit.setBaseAmount(125);
         bonusBenefit.setPercent(200);
         bonusBenefit.setIsQualify(YES);
-        bonusBenefit.setPayrollDate(new MyDate(1988, 03, 31));
+        bonusBenefit.setPayrollDate(MyDate.create(1988, 03, 31));
 
 /**************     END BENEFIT CALCULATION    ******************/
 

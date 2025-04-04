@@ -101,7 +101,7 @@ public class GenerateEmployeeData {
                 employeePaymentDetails.setDepartment(dpt);
                 employeePaymentDetails.setJobTitle(title);
                 employeePaymentDetails.setBasicSalary(salary);
-                employeePaymentDetails.setDateJoined(new MyDate(year, month, day));
+                employeePaymentDetails.setDateJoined(MyDate.create(year, month, day));
 
                  //add the employee to the employee list
                 employeeList.add(emp);

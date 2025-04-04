@@ -3,6 +3,8 @@ package com.bullet.employee.strategy;
 import com.bullet.employee.Employee;
 import com.bullet.person.MyDate;
 
+import java.time.LocalDate;
+
 
 public class EmployeePaymentDetails implements PaymentDetailsInterface{
     /*
@@ -16,7 +18,7 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
     private String employeeNumber;
     private String department;
     private String jobTitle;    //position
-    private MyDate dateJoined;
+    private LocalDate dateJoined;
     private String branch;
     private EmployeeGrade grade;
     private Currency currency;
@@ -88,11 +90,11 @@ public class EmployeePaymentDetails implements PaymentDetailsInterface{
         this.jobTitle = jobTitle;
     }
 
-    public MyDate getDateJoined() {
+    public LocalDate getDateJoined() {
         return dateJoined;
     }
 
-    public void setDateJoined(MyDate dateJoined) {
+    public void setDateJoined(LocalDate dateJoined) {
         this.dateJoined = dateJoined;
 
     }

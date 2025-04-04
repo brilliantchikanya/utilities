@@ -5,6 +5,8 @@ import com.bullet.person.Gender;
 import com.bullet.person.MyDate;
 import com.bullet.person.Person;
 
+import java.time.LocalDate;
+
 public class User implements UserInterface{
     private Person user;
 
@@ -24,7 +26,7 @@ public class User implements UserInterface{
         Person person = user1.user;
         person.setName(name);
         person.setGender(Gender.MALE);
-        person.setDateOfBirth(new MyDate());
+        person.setDateOfBirth(LocalDate.now());
         System.out.println(person);
 
     }

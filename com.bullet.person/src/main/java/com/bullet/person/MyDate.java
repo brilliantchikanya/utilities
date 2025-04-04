@@ -3,23 +3,11 @@ package com.bullet.person;
 import java.time.LocalDate;
 
 public class MyDate {
-    private LocalDate date;
+    //TODO need to work on this class and add static methods for formatting dates
 
-    public MyDate() {
-        date = LocalDate.now();
-    }
-
-    public MyDate (int year, int month, int day) {
-        date = LocalDate.of(year, month, day);
+    public static LocalDate create(int year, int month, int day) {
+        return LocalDate.of(year, month, day);
 
     }
 
-    public static LocalDate now() {
-        return LocalDate.now();
-    }
-
-    @Override
-    public String toString() {
-        return date + "";
-    }
 }
