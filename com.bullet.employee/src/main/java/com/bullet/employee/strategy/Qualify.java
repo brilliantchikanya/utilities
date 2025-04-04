@@ -4,7 +4,7 @@ public enum Qualify {
     // for determining whether an employee qualifies for a deduction or not
     YES(true), NO(false);
 
-    private boolean isQualified;
+    private final boolean isQualified;
 
     private Qualify(boolean isQualified) {
         this.isQualified = isQualified;

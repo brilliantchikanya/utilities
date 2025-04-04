@@ -3,14 +3,17 @@ package com.bullet.employee.strategy;
 // DailySalaryStrategy.java
 public class DailySalaryStrategy implements PaymentTypeStrategy {
     private double dailyRate;
-    private int standardDays; // standard days worked, excluding overtime days
+    private int daysWorked; //TODO actual days worked, including overtime days worked
 
 
-    public DailySalaryStrategy() {}
+    public DailySalaryStrategy() {
+        this.dailyRate = 0;
+        this.daysWorked = 0;    //default values
+    }
 
-    public DailySalaryStrategy(double dailyRate, int standardDays) {
+    public DailySalaryStrategy(double dailyRate, int daysWorked) {
         this.dailyRate = dailyRate;
-        this.standardDays = standardDays;
+        this.daysWorked = daysWorked;
     }
 
     public double getDailyRate() {
@@ -22,20 +25,20 @@ public class DailySalaryStrategy implements PaymentTypeStrategy {
     }
 
     public int getDaysWorked() {
-        return standardDays;
+        return daysWorked;
     }
 
-    public void setDaysWorked(int standardDays) {
-        this.standardDays = standardDays;
+    public void setDaysWorked(int daysWorked) {
+        this.daysWorked = daysWorked;
     }
 
     @Override
     public double calculateBasicSalary() {
-        return dailyRate * standardDays;
-    }
+        return dailyRate * daysWorked;
+    }//TODO cater for overtime days
 
     @Override
     public String getPaymentDetails() {
-        return String.format("Daily Rate: $%.2f, Days Worked: %d", dailyRate, standardDays);
+        return String.format("Daily Rate: $%.2f, Days Worked: %d", dailyRate, daysWorked);
     }
 }
