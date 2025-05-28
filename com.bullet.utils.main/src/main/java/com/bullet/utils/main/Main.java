@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.bullet.utils.Print.*;
-import static com.bullet.validate.Validation.isNull;
+import static com.bullet.utils.Validation.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,5 +38,20 @@ public class Main {
         Name.sortByLastName(names);
         print("The names sorted by last name are: " + names);
         Name.printNames(names);
+
+        print("Checking for a digit...");
+        String z = "5";
+        //String value = "";
+        if (isDigit(z)) {
+            print("Its a number");
+        } else print("Not a number");
+
+        System.out.println();
+        print("Checking for a float...");
+        String vallue = "55.";
+        //String value = "";
+        if (isFloat(vallue)) {
+            print("Its a float");
+        } else print("Not a float");
     }
 }
