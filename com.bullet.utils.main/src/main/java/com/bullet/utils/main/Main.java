@@ -19,8 +19,8 @@ public class Main {
         print("Testing the method isNull()");
         String name = "Brilliant";
         String empty = "";
-        print("The name object is null: "  + isNull(""));
-        print("The empty object is null: "  + isNull(""));
+        print("The name object is null: "  + isNull(name));
+        print("The empty object is null: "  + isNull(empty));
 
         printStars();
         print("Testing the Name class...");
@@ -53,5 +53,12 @@ public class Main {
         if (isFloat(vallue)) {
             print("Its a float");
         } else print("Not a float");
+
+        //System.out.println();
+        print();
+        print("Checking if email is valid...");
+        String email = "bullet@gmail.com";
+        if (isValidEmail(email)) print("Email valid");
+        else print("Email not valid");
     }
 }
