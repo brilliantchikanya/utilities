@@ -2,7 +2,6 @@ package com.bullet.user;
 
 import com.bullet.names.Name;
 import com.bullet.person.Gender;
-import com.bullet.person.MyDate;
 import com.bullet.person.Person;
 
 import java.time.LocalDate;
