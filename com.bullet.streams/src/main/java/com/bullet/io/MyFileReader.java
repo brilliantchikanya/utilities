@@ -16,13 +16,10 @@ public class MyFileReader {
     public static List<String> readFile(String fileName) {
         Path path = Paths.get(fileName);
         List<String> lines;
-
         try {
-
             lines =  Files.readAllLines(path);
         } catch (IOException e) {
             print("Error reading from file");
-            //e.printStackTrace();
             lines = new ArrayList<>();
         }
         return lines;
