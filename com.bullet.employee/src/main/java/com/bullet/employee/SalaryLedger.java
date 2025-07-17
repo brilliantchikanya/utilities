@@ -3,6 +3,8 @@ package com.bullet.employee;
 
 import com.bullet.person.MyDate;
 
+import java.time.LocalDate;
+
 public class SalaryLedger implements SalaryInterface{
     private long salary_id;
     private Employee employee;
@@ -13,7 +15,7 @@ public class SalaryLedger implements SalaryInterface{
        framework for organizing and managing all payroll-related resources.
     * */
 
-    private MyDate payroll_date;            //employee_id and date as composite key
+    private LocalDate payroll_date;            //employee_id and date as composite key
 
     private double basicEarnings;
     private double benefits;
@@ -42,60 +44,60 @@ public class SalaryLedger implements SalaryInterface{
         employee = new Employee();
 
     }
-    public SalaryLedger(Employee employee, MyDate payroll_date) {
+    public SalaryLedger(Employee employee, LocalDate payroll_date) {
         this.employee = employee;
         this.payroll_date = payroll_date;
     }
 
 
     @Override
-    public double basicEarnings(MyDate payment_date, long employee_id) {
+    public double basicEarnings(LocalDate payment_date, long employee_id) {
         return 0;
     }
 
     @Override
-    public double benefits(MyDate payment_date, long employee_id) {
+    public double benefits(LocalDate payment_date, long employee_id) {
         return 0;
     }
 
     @Override
-    public double grossEarnings(MyDate payment_date, long employee_id) {
+    public double grossEarnings(LocalDate payment_dateLocalDate, long employee_id) {
         return 0;
     }
 
     @Override
-    public double pretaxDeductions(MyDate payment_date, long employee_id) {
+    public double pretaxDeductions(LocalDate payment_date, long employee_id) {
         return grossEarnings - pretaxDeductions;
     }
 
     @Override
-    public double tax(MyDate payment_date, long employee_id) {
+    public double tax(LocalDate payment_date, long employee_id) {
         float tax_rate = 0;
         return pretaxEarnings * tax_rate;
     }
 
     @Override
-    public double postTaxEarnings(MyDate payment_date, long employee_id) {
+    public double postTaxEarnings(LocalDate payment_date, long employee_id) {
         return pretaxEarnings - tax;
     }
 
     @Override
-    public double postTaxDeductions(MyDate payment_date, long employee_id) {
+    public double postTaxDeductions(LocalDate payment_date, long employee_id) {
         return 0;
     }
 
     @Override
-    public double netEarnings(MyDate payment_date, long employee_id) {
+    public double netEarnings(LocalDate payment_date, long employee_id) {
         return postTaxEarnings - postTaxDeductions;
     }
 
     @Override
-    public double totalDeductions(MyDate payment_date, long employee_id) {
+    public double totalDeductions(LocalDate payment_date, long employee_id) {
         return 0;
     }
 
     @Override
-    public double companyLiabilities(MyDate payment_date, long employee_id) {
+    public double companyLiabilities(LocalDate payment_date, long employee_id) {
         return 0;
     }
 }

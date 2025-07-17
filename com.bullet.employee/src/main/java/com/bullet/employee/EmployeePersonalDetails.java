@@ -1,55 +1,62 @@
 package com.bullet.employee;
 
-public class EmployeePersonalDetails {
-    Employee employee;
-    private final PersonalDetails personalDetails;
+import java.time.LocalDate;
 
-    public EmployeePersonalDetails() {
+public class EmployeePersonalDetails {
+    private long employeePersonalDetailsID;
+    private final long employeeID;
+    private final PersonalDetails personalDetails;
+    private LocalDate dateJoined;
+
+    public EmployeePersonalDetails(long employeePersonalDetailsID, long employeeID) {
+        this.employeePersonalDetailsID = employeePersonalDetailsID;
+        this.employeeID = employeeID;
         this.personalDetails = new PersonalDetails();
     }
 
-    public EmployeePersonalDetails(Employee employee) {
-        this();
-        this.employee = employee;
-        this.personalDetails.setPerson(employee.getPerson());
+    public EmployeePersonalDetails(long employeePersonalDetailsID, Employee employee) {
+        this.employeePersonalDetailsID = employeePersonalDetailsID;
+        this.employeeID = employee.getEmployeeID();
+        this.personalDetails = new PersonalDetails();
+        //this.personalDetails.setPerson(employee.getPerson());
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public long getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public long getEmployeePersonalDetailsID() {
+        return employeePersonalDetailsID;
     }
 
-    public void setEmployeeEmail(String email) {
-        this.personalDetails.setEmail(email);
+    public void setEmployeePersonalDetailsID(long employeePersonalDetailsID) {
+        this.employeePersonalDetailsID = employeePersonalDetailsID;
     }
 
-    public String getEmployeeEmail() {
-        return this.personalDetails.getEmail();
+    public PersonalDetails getPersonalDetails() {
+        return personalDetails;
     }
 
-    public void setEmployeePhoneNumber(String phoneNumber) {
-        this.personalDetails.setPhoneNumber(phoneNumber);
+    public LocalDate getDateJoined() {
+        return dateJoined;
     }
 
-    public String getEmployeePhoneNumber() {
-        return this.personalDetails.getPhoneNumber();
+    public void setDateJoined(LocalDate dateJoined) {
+        this.dateJoined = dateJoined;
     }
+
 
     @Override
     public String toString() {
-        return this.employee.getEmployeeFirstName() +
-                ", " + this.employee.getEmployeeLastName() +
-                ", " + this.personalDetails.getEmail();
+        return "EmployeePersonalDetails{" +
+                "employeePersonalDetailsID=" + employeePersonalDetailsID +
+                ", employeeID=" + employeeID +
+                ", dateJoined=" + dateJoined +
+                '}';
     }
 
     public static void main(String[] args) {
         Employee emp = new Employee("paul", "chikanya");
-        EmployeePersonalDetails epd = new EmployeePersonalDetails(emp);
-
-        System.out.println(epd);
-        System.out.println(epd.personalDetails.getPerson());
+        System.out.println(emp.getEmployeeID());
     }
 }

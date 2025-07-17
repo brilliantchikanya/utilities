@@ -4,9 +4,9 @@ package com.bullet.employee.strategy;
 public class MonthlySalaryStrategy implements PaymentTypeStrategy {
     private double monthlySalary;
 
-    public MonthlySalaryStrategy() {
-        this.monthlySalary = 0;
-    }
+//    public MonthlySalaryStrategy(double monthlySalary) {
+//        this.monthlySalary = monthlySalary;
+//    }
 
     public MonthlySalaryStrategy(double monthlySalary) {
         this.monthlySalary = monthlySalary;

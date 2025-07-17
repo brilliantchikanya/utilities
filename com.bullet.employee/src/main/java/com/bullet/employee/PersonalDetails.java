@@ -2,22 +2,14 @@ package com.bullet.employee;
 
 import com.bullet.address.Address;
 import com.bullet.person.MaritalStatus;
-import com.bullet.person.MyDate;
 import com.bullet.person.Person;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class PersonalDetails {
-    //private long id;
+    private long personalDetailsID;
     private Person person;
-    private String email;
-    private String phoneNumber;
-    private MaritalStatus maritalStatus;
-    String nationalId;
-    //usd_account  ---name, branch, contacts, account number
-    //zig_account - this goes into payment details
-    MyDate dateOfBirth;
-    Address placeOfBirth;
     int numberOfDependants;
     private List<Person> nextOfKeen;
 
@@ -31,13 +23,13 @@ public class PersonalDetails {
 
     /***************    GETTERS AND SETTERS     ***************/
 
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
+    public long getpersonalDetailsID() {
+        return personalDetailsID;
+    }
+
+    public void setId(long personalDetailsID) {
+        this.personalDetailsID = personalDetailsID;
+    }
 
     public Person getPerson() {
         return person;
@@ -47,52 +39,37 @@ public class PersonalDetails {
         this.person = person;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public MaritalStatus getMaritalStatus() {
-        return maritalStatus;
+        return this.person.getMaritalStatus();
     }
 
     public void setMaritalStatus(MaritalStatus maritalStatus) {
-        this.maritalStatus = maritalStatus;
+        this.person.setMaritalStatus(maritalStatus);
     }
 
     public String getNationalId() {
-        return nationalId;
+        return this.person.getIdNumber();
     }
 
-    public void setNationalId(String nationalId) {
-        this.nationalId = nationalId;
+    public void setNationalId(String nationalID) {
+        this.person.setNationalID(nationalID);
     }
 
-    public MyDate getDateOfBirth() {
-        return dateOfBirth;
+    public LocalDate getDateOfBirth() {
+        return this.person.getDateOfBirth();
     }
 
-    public void setDateOfBirth(MyDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.person.setDateOfBirth(dateOfBirth);
     }
 
     public Address getPlaceOfBirth() {
-        return placeOfBirth;
+        return this.person.getPlaceOfBirth();
     }
 
     public void setPlaceOfBirth(Address placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
+        this.person.setPlaceOfBirth(placeOfBirth);
     }
 
     public int getNumberOfDependants() {
@@ -107,9 +84,12 @@ public class PersonalDetails {
         return nextOfKeen;
     }
 
-    public void setNextOfKeen(Person nextOfKeen) {
-        this.nextOfKeen.add(nextOfKeen);
+    public void setNextOfKeen(List<Person> nextOfKeen) {
+        this.nextOfKeen = nextOfKeen;
     }
+
+
+
 
     /****************   END GETTERS AND SETTERS     ***********/
 }

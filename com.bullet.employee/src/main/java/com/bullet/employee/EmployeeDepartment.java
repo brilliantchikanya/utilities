@@ -1,49 +1,40 @@
 package com.bullet.employee;
 
+import com.bullet.employee.strategy.EmployeeGrade;
+
 public class EmployeeDepartment {
-    private Employee employee;
-    //String employeeId;
-    String departmentId;
+    long employeeID;
+    long departmentID;
     String jobTitle;
-    //EmployeeGrade grade;
+    EmployeeGrade grade;
 
 
-    public EmployeeDepartment() {
-        employee = new Employee();
-        //employeeId = "";
-        departmentId = "";
-        jobTitle = "";
+    public EmployeeDepartment(long employeeId, long departmentId, String jobTitle) {
+        this.employeeID = employeeId;
+        this.departmentID = departmentId;
+        jobTitle = jobTitle;
     }
 
-    public EmployeeDepartment(Employee employee) {
-        this.employee = employee;
-        //employeeId = "";
-        departmentId = "";
-        jobTitle = "";
+    public EmployeeDepartment(Employee employee, long departmentID, String jobTitle) {
+        this.employeeID = employee.getEmployeeID();
+        this.departmentID = departmentID;
+        jobTitle = jobTitle;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public long getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(long employeeId) {
+        this.employeeID = employeeId;
     }
 
-    public String getEmployeeId() {
-        return employee.getEmployeeName();
+    public long getDepartmentId() {
+        return departmentID;
     }
 
-    public void setEmployeeId(String employeeId) {
-        //this.employeeId = employee.getEmployeeName();
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentId(long departmentID) {
+        this.departmentID = departmentID;
     }
 
     public String getJobTitle() {
@@ -52,5 +43,13 @@ public class EmployeeDepartment {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public EmployeeGrade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(EmployeeGrade grade) {
+        this.grade = grade;
     }
 }

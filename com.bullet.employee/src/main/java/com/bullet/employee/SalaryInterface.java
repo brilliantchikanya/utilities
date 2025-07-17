@@ -1,19 +1,19 @@
 package com.bullet.employee;
 
-import com.bullet.person.MyDate;
+import java.time.LocalDate;
 
 public interface SalaryInterface {
 
-    double basicEarnings(MyDate payment_date, long employee_id);
-    double benefits(MyDate payment_date, long employee_id);
-    double grossEarnings(MyDate payment_date, long employee_id);
-    double pretaxDeductions(MyDate payment_date, long employee_id);
-    double tax(MyDate payment_date, long employee_id);
-    double postTaxEarnings(MyDate payment_date, long employee_id);
-    double postTaxDeductions(MyDate payment_date, long employee_id);
-    double netEarnings(MyDate payment_date, long employee_id);
-    double totalDeductions(MyDate payment_date, long employee_id);
-    double companyLiabilities(MyDate payment_date, long employee_id);
+    double basicEarnings(LocalDate payment_date, long employee_id);
+    double benefits(LocalDate payment_date, long employee_id);
+    double grossEarnings(LocalDate payment_date, long employee_id);
+    double pretaxDeductions(LocalDate payment_date, long employee_id);
+    double tax(LocalDate payment_date, long employee_id);
+    double postTaxEarnings(LocalDate payment_date, long employee_id);
+    double postTaxDeductions(LocalDate payment_date, long employee_id);
+    double netEarnings(LocalDate payment_date, long employee_id);
+    double totalDeductions(LocalDate payment_date, long employee_id);
+    double companyLiabilities(LocalDate payment_date, long employee_id);
 
     /*
 

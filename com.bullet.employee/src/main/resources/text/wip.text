@@ -31,3 +31,62 @@ Typical elements of a paystub include:
 
     Net pay distribution: Net pay and accounts to which pay has been directly
     deposited
+
+
+    /*
+       PAYSLIP
+            //date of pay period e.g 2025-01-30
+            //name, address, jobtitle
+            //days worked or hours worked
+            //payee
+            //pre-tax deductions e.g medical and retirement
+            //after tax deductions e.g unions, life insurance
+            //employer paid contributions
+            //net salary
+
+        FIELDS
+            //fixed_salary ---monthly or annually
+            //daily_rate
+            //hourly_rate
+                //active_status
+                //suspension_status
+                //termination_status
+                //leave_status
+            //department ---related to pay-grade
+            //supervisor
+                //pay_grade
+                //roles --e.g admin, supervisor, general, sudo
+            //over_time_rate
+            //marital_status
+            //national_id
+                //usd_account  ---name, branch, contacts, account number
+                //zig_account
+            //date_of_birth
+            //place_of_birth
+            //number_of_dependants
+            //next_of_keen
+
+
+         DEDUCTIONS
+            ***pre-tax and post-tax
+            ***mandatory and voluntary
+            ***employee and employer contributions
+            //payee - income tax
+            //nssa - retirement or pension
+            //cimas - medical aid
+            //nyaradzo - funeral assurance
+            //life_assurance
+            //aids_levy
+            //nec
+            //union_fees
+            //wage_garnishes
+
+
+         BENEFITS
+            //incentives or bonus schemes
+            //overtime
+            //fringe_benefits
+            //retirement_lumpsum
+            //benefit plan contributions
+
+        * */

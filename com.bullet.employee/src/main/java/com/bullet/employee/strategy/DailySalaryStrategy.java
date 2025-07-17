@@ -3,17 +3,21 @@ package com.bullet.employee.strategy;
 // DailySalaryStrategy.java
 public class DailySalaryStrategy implements PaymentTypeStrategy {
     private double dailyRate;
-    private int daysWorked; //TODO actual days worked, including overtime days worked
+    // standard days is the stipulated number of days an employee is allowed
+    // to work before bonus days can be calculated
+    private int standardDaysWorked; //TODO actual days worked, including overtime days worked
+    private int totalDaysWorked;
 
 
-    public DailySalaryStrategy() {
-        this.dailyRate = 0;
-        this.daysWorked = 0;    //default values
-    }
+//    public DailySalaryStrategy() {
+//        this.dailyRate = 0;
+//        this.daysWorked = 0;    //default values
+//    }
 
-    public DailySalaryStrategy(double dailyRate, int daysWorked) {
+    public DailySalaryStrategy(double dailyRate, int standardDaysWorked, int totalDaysWorked) {
         this.dailyRate = dailyRate;
-        this.daysWorked = daysWorked;
+        this.standardDaysWorked = standardDaysWorked;
+        this.totalDaysWorked = totalDaysWorked;
     }
 
     public double getDailyRate() {
@@ -24,21 +28,32 @@ public class DailySalaryStrategy implements PaymentTypeStrategy {
         this.dailyRate = dailyRate;
     }
 
-    public int getDaysWorked() {
-        return daysWorked;
+    public int getStandardDaysWorked() {
+        return standardDaysWorked;
     }
 
-    public void setDaysWorked(int daysWorked) {
-        this.daysWorked = daysWorked;
+    public void setStandardDaysWorked(int standardDaysWorked) {
+        this.standardDaysWorked = standardDaysWorked;
+    }
+
+    public int getTotalDaysWorked() {
+        return totalDaysWorked;
+    }
+
+    public void setTotalDaysWorked(int totalDaysWorked) {
+        this.totalDaysWorked = totalDaysWorked;
     }
 
     @Override
     public double calculateBasicSalary() {
-        return dailyRate * daysWorked;
+        return dailyRate * standardDaysWorked;
     }//TODO cater for overtime days
+
+    // will need to combine this with bonus calculation
 
     @Override
     public String getPaymentDetails() {
-        return String.format("Daily Rate: $%.2f, Days Worked: %d", dailyRate, daysWorked);
+        return String.format("Daily Rate: $%.2f, Total Days Worked: %d," +
+                "Standard Days Worked: %d", dailyRate, totalDaysWorked, standardDaysWorked);
     }
 }

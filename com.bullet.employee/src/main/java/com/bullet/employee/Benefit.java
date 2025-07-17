@@ -6,7 +6,6 @@ public class Benefit {
     private long benefitId;
     private String benefitName;
     private String description;
-    //private PaymentType deductionType;
     private FixedOrPercent fixedOrPercent;
 
     public Benefit() {
@@ -36,13 +35,6 @@ public class Benefit {
         this.description = description;
     }
 
-//    public PaymentType getDeductionType() {
-//        return deductionType;
-//    }
-//
-//    public void setDeductionType(PaymentType deductionType) {
-//        this.deductionType = deductionType;
-//    }
 
     public FixedOrPercent getFixedOrPercent() {
         return fixedOrPercent;

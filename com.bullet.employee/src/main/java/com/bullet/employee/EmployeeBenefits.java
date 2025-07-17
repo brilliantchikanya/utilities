@@ -1,54 +1,24 @@
 package com.bullet.employee;
 
-import com.bullet.employee.strategy.Qualify;
 import com.bullet.person.MyDate;
 
-import java.time.LocalDate;
-
-public class EmployeeBenefits implements PayrollInterface{
-    //POJO for the benefits table where employee payroll benefits are populated
-    private long id;
-    Employee employee;
-    private long employeeId;
+public class EmployeeBenefits extends EmployeeBenefitsOrDeductions{
+    private long employeeBenefitID;
     private long benefitId; //employeeId, benefitId are the composite keys
-    private LocalDate payrollDate;
-    private double amount;  //fixed amount benefit
-    private float percent; //%age, if benefit is calculated on base amount
-    private double baseAmount;  //base on which benefit amount is calculated
-    private Qualify isQualify;  //whether employee qualifies for benefit or not
 
-
-    public EmployeeBenefits() {
-        employee = new Employee();
+    public EmployeeBenefits(long employeeID) {
+        super(employeeID);
     }
-
     public EmployeeBenefits(Employee employee) {
-        this.employee = employee;
+        super(employee.getEmployeeID());
     }
 
-
-    public long getId() {
-        return id;
+    public long getEmployeeBenefitID() {
+        return employeeBenefitID;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public long getEmployeeId() {
-        return this.employee.getEmployeeID();
-    }
-
-    public void setEmployeeId(long employeeId) {
-        this.employee.setEmployeeID(employeeId);
+    public void setEmployeeBenefitID(long id) {
+        this.employeeBenefitID = id;
     }
 
     public long getBenefitId() {
@@ -59,50 +29,9 @@ public class EmployeeBenefits implements PayrollInterface{
         this.benefitId = benefitId;
     }
 
-    public LocalDate getPayrollDate() {
-        return payrollDate;
-    }
-
-    public void setPayrollDate(LocalDate payrollDate) {
-        this.payrollDate = payrollDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public float getPercent() {
-        return percent;
-    }
-
-    public void setPercent(float percent) {
-        this.percent = percent;
-    }
-
-    public double getBaseAmount() {
-        return baseAmount;
-    }
-
-    public void setBaseAmount(double baseAmount) {
-        this.baseAmount = baseAmount;
-    }
-
-    public Qualify getIsQualify() {
-        return isQualify;
-    }
-
-    public void setIsQualify(Qualify isQualify) {
-        this.isQualify = isQualify;
-    }
-
-    @Override
-    public double calculate(String employeeId, String benOrDeductionId, MyDate payrollDate) {
-        /* this method calculates a particular benefit for an employee for
-           a particular payroll day*/
-        return 0;
-    }
+//    public double calculate(long employeeId, String benOrDeductionId, MyDate payrollDate) {
+//        /* this method calculates a particular benefit for an employee for
+//           a particular payroll day*/
+//        return 0;
+//    }
 }

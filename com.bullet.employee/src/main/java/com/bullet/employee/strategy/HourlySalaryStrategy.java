@@ -3,18 +3,20 @@ package com.bullet.employee.strategy;
 // HourlySalaryStrategy.java
 public class HourlySalaryStrategy implements PaymentTypeStrategy {
     private double hourlyRate;
-    private double hoursWorked; //TODO this can be greater than standard
+    private double standardHoursWorked; //TODO this can be greater than standard
                     // hours, which needs to be looked into (overtime)
+    private double totalHoursWorked;
 
-    public HourlySalaryStrategy() {
-        this.hourlyRate = 0;    //default values in the default constructor
-        this.hoursWorked = 0;
+    public HourlySalaryStrategy(double hourlyRate, double standardHoursWorked, double totalHoursWorked) {
+        this.hourlyRate = hourlyRate;    //default values in the default constructor
+        this.standardHoursWorked = standardHoursWorked;
+        this.totalHoursWorked = totalHoursWorked;
     }
 
-    public HourlySalaryStrategy(double hourlyRate, double hoursWorked) {
-        this.hourlyRate = hourlyRate;
-        this.hoursWorked = hoursWorked;
-    }
+//    public HourlySalaryStrategy(double hourlyRate, double hoursWorked) {
+//        this.hourlyRate = hourlyRate;
+//        this.hoursWorked = hoursWorked;
+//    }
 
     public double getHourlyRate() {
         return hourlyRate;
@@ -24,21 +26,34 @@ public class HourlySalaryStrategy implements PaymentTypeStrategy {
         this.hourlyRate = hourlyRate;
     }
 
-    public double getHoursWorked() {
-        return hoursWorked;
+    public double getStandardHoursWorked() {
+        return standardHoursWorked;
     }
 
-    public void setHoursWorked(double hoursWorked) {
-        this.hoursWorked = hoursWorked;
+    public void setStandardHoursWorked(double standardHoursWorked) {
+        this.standardHoursWorked = standardHoursWorked;
+    }
+
+    public double getTotalHoursWorked() {
+        return totalHoursWorked;
+    }
+
+    public void setTotalHoursWorked(double totalHoursWorked) {
+        this.totalHoursWorked = totalHoursWorked;
     }
 
     @Override
     public double calculateBasicSalary() {
-        return hourlyRate * hoursWorked;
+        return hourlyRate * standardHoursWorked;
     }
 
     @Override
     public String getPaymentDetails() {
-        return String.format("Hourly Rate: $%.2f, Hours Worked: %.2f", hourlyRate, hourlyRate);
+        if(totalHoursWorked == standardHoursWorked) {
+            return String.format("Hourly Rate: $%.2f, Hours Worked: %.2f", hourlyRate, totalHoursWorked);
+        } else {
+            return String.format("Hourly Rate: $%.2f, Total Hours Worked: %.2f, " +
+                    "Standard Hours Worked: %.2f", hourlyRate, totalHoursWorked, standardHoursWorked);
+        }
     }
 }
