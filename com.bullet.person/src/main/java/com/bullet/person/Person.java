@@ -17,84 +17,41 @@ public class Person implements PersonInterface{
     private Gender gender;
     private LocalDate dateOfBirth;
     private Address placeOfBirth;   //still work in progress
-    String idNumber;
+    String nationalID;
     MaritalStatus maritalStatus;
-
-    /*
-    *
-    * employee personal details
-        place of birth;national id;
-        * marital status;dependents class;children class;next of keen*/
+    private String email;
+    private String phoneNumber;
 
     public Person(String firstname) {
-        create(firstname);
+        this.getName().setFirstName(firstname);
+        //create(firstname);
     }
 
     public Person(String firstname, String lastname) {
-        //Person person = new Person();
-        create(firstname, lastname);
+        this.getName().setFirstName(firstname);
+        this.getName().setLastName(lastname);
     }
 
     public Person(Name name, Gender gender) {
         this.name = name;
         this.gender = gender;
-        dateOfBirth = null;
+        dateOfBirth = MyDate.create(1900,1,1);
     }
 
     public Person() {
         name = new Name();
         gender = Gender.UNKNOWN;
-        dateOfBirth = null;
-
-    } // end of constructor
-
-    // constructor helper methods
-    private void create(String name1, String name2) {
-        this.name = new Name(name1, name2);
-        this.gender = Gender.UNKNOWN;
-
+        dateOfBirth = MyDate.create(1900,1,1);
     }
 
-    private void create(String firstname) {
-        this.name = new Name(firstname);
-        this.gender = Gender.UNKNOWN;
-    }// end of helper methods
-
+    // end of constructor
 
     // beginning of getter and setter methods
-    public String getName() {
-        return this.getFirstName() + ", " + this.getLastName();
-                //name.getFirstName() + " " ;
+    public Name getName() {
+        return this.name;
     }
-    public String getFirstName() {
-        return this.name.getFirstName();
-    }
-
-    public String getLastName() {
-        return this.name.getLastName();
-    }
-
     public void setName(Name name) {
         this.name = name;
-    }
-
-    public void setName(String fname, String lname) {
-        Name name = new Name(fname, lname);
-        setName(name);
-    }
-
-    public void setFirstName(String firstName) {
-        Name name = new Name(firstName);
-        setName(name);
-    }
-
-    public void setLastName(String lastName) {
-        Name name = new Name();
-        this.name.setLastName(lastName);
-    }
-
-    public String getGenderName() {
-        return gender.name();
     }
 
     public Gender getGender() {
@@ -111,12 +68,50 @@ public class Person implements PersonInterface{
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }   // end of getter and setter methods
+    }
+
+    public Address getPlaceOfBirth() {
+        return placeOfBirth;
+    }
+
+    public void setPlaceOfBirth(Address placeOfBirth) {
+        this.placeOfBirth = placeOfBirth;
+    }
+
+    public MaritalStatus getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(MaritalStatus maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public String getIdNumber() {
+        return nationalID;
+    }
+
+    public void setNationalID(String nationalID) {
+        this.nationalID = nationalID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    // end of getter and setter methods
 
 
-
-    /* Two important methods which must be overridden, the equals method and
-     *  the toString, and the hashCode as well*/
     @Override
     public boolean equals(Object comparisonObject) {
         if (this == comparisonObject) return true;  /* The == operator when used with reference
@@ -129,30 +124,17 @@ public class Person implements PersonInterface{
 
     @Override
     public String toString() {
-        return getName();
+        return "Person{" +
+                "name=" + name.getFirstName() + " " + name.getLastName() +
+                ", gender=" + gender.name() +
+                ", maritalStatus=" + maritalStatus.toString() +
+                ", email='" + email + '\'' +
+                '}';
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getGender());
     }
-
-    public static void main(String[] args) {
-        String fname="Brill", lname="Chiks";
-        Person person = new Person(fname, lname);
-        person.setDateOfBirth(LocalDate.now());
-        String name = person.getName();
-        System.out.println(name);
-        System.out.println(person.calculateAge(LocalDate.EPOCH));
-        Person person1 = new Person(fname);
-        System.out.println(person1);
-        System.out.println(person1.getGender());
-        System.out.println(person1.calculateAge(LocalDate.of(1984, 11,14)));
-        Person mia = new Person();
-        mia.name.setFirstName("Mia");
-        System.out.println(mia);
-
-    }
-
 
 }
