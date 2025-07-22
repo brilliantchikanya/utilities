@@ -1,6 +1,6 @@
 package com.bullet.service;
 
-import com.bullet.dao.UserCsvDAOImpl;
+import com.bullet.dao.UserDAO;
 import com.bullet.model.User;
 
 import java.util.Map;
@@ -14,24 +14,29 @@ import static com.bullet.utils.Print.printnb;
  * @author com.bullet
  * @since 15-07-2025
  * */
-public class UserService {
+public abstract class UserService {
     private static final String path = "com.bullet.streams/src/main/resources/employees.txt";
-    private static final UserCsvDAOImpl data = new UserCsvDAOImpl(path);
+    protected UserDAO data;  // = new UserCsvDAOImpl(path);
     private static final Scanner scanner = new Scanner(System.in);
     static boolean done = false;
 
+    protected UserService(UserDAO userDAO) {
+        this.data = userDAO;
 
-    public static void addUser() {
+    }
+
+
+    protected void addUser() {
         printnb("    Enter the name of the user: ");
         String username = scanner.next();
         printnb("    Enter the password for the user: ");
         String passwd = scanner.next();
         printnb("    Enter the ID of the user: ");
         long id = scanner.nextInt();
-        data.add(new User(id, username, passwd));
+        data.add(new User(username, passwd));
     }
 
-    public static void printAllUsers() {
+    protected void printAllUsers() {
         Map<Long, User> users = getAllUsers();
         for (long id: users.keySet()) {
             User user = users.get(id);
@@ -39,63 +44,58 @@ public class UserService {
         }
     }
 
-    public static void deleteUser() {
+    protected void deleteUser() {
         printnb("Enter the ID of the user: ");
         long id = scanner.nextInt();
         data.delete(id);
     }
 
-    public static void getUser() {
+    protected void getUser() {
         printnb("Enter the ID of the user: ");
         long id = scanner.nextInt();
         User user = data.get(id);
         print(user);
     }
 
-    private static Map<Long, User> getAllUsers() {
+    protected Map<Long, User> getAllUsers() {
         return data.getAllUsers();
     }
 
 
-    public static void updateUser() {
-        Map<Long, User> users = getAllUsers();
-        printnb("    Enter the ID of the user to update: ");
-        long id = scanner.nextInt();
-        if (users.containsKey(id)) {
-            User user = users.get(id);
-            String name;
-            String passwd;
-            print("        Do you wish to change the username?: ");
-            printnb("            Enter y if yes, or n for no: ");
-            String value = scanner.next();
-            if (value.equalsIgnoreCase("y")) {
-                printnb("            Enter the new username: ");
-                name = scanner.next();
-                user.setUserName(name);
-                print("    Do you also wish to change the password?: ");
-                printnb("        Enter y if yes, or n for no: ");
-                String another = scanner.next();
-                if (another.equalsIgnoreCase("y")) {
-                    printnb("            Enter the new password: ");
-                    passwd = scanner.next();
-                    user.setPasswd(passwd);
-                }
-            } else {
-                print("    Do you wish to change the password?: ");
-                printnb("        Enter y if yes, or n for no: ");
-                String another = scanner.next();
-                if (another.equalsIgnoreCase("y")) {
-                    printnb("    Enter the new password: ");
-                    passwd = scanner.next();
-                    user.setPasswd(passwd);
-                }
-            }
-            data.update(user);
-        } else print("User does not exist");
+    protected abstract void updateUser();
 
+    protected User collectUpdateDetails(User user) {
+        String name;
+        String passwd;
+        print("        Do you wish to change the username?: ");
+        printnb("            Enter y if yes, or n for no: ");
+        String value = scanner.next();
+        if (value.equalsIgnoreCase("y")) {
+            printnb("            Enter the new username: ");
+            name = scanner.next();
+            user.setUserName(name);
+            print("    Do you also wish to change the password?: ");
+            printnb("        Enter y if yes, or n for no: ");
+            String another = scanner.next();
+            if (another.equalsIgnoreCase("y")) {
+                printnb("            Enter the new password: ");
+                passwd = scanner.next();
+                user.setPasswd(passwd);
+            }
+        } else {
+            print("    Do you wish to change the password?: ");
+            printnb("        Enter y if yes, or n for no: ");
+            String another = scanner.next();
+            if (another.equalsIgnoreCase("y")) {
+                printnb("    Enter the new password: ");
+                passwd = scanner.next();
+                user.setPasswd(passwd);
+            }
+        }
+        return user;
     }
 
-    public static void exit() {
+    protected void exit() {
         done = true;
         print("Thank you for using this application......");
     }
@@ -113,12 +113,13 @@ public class UserService {
             print("*    3. Get all users from database ");
             print("*    4. Delete a user ");
             print("*    5. Exit the application ");
+            print("*    6. Get a single user from the database ");
             print();
             printnb("Select an option: ");
             int value = scanner.nextInt();
             switch (value) {
                 case 1:
-                    UserService.addUser();
+                    addUser();
                     break;
                 case 2:
                     updateUser();
@@ -132,6 +133,7 @@ public class UserService {
                 case 5:
                     exit();
                     break;
+                case 6:
                 default:
                     getUser();
                     break;

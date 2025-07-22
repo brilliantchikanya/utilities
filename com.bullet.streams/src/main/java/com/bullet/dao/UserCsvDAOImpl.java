@@ -4,6 +4,7 @@ import com.bullet.io.MyFileReader;
 import com.bullet.io.MyFileWriter;
 import com.bullet.model.User;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +68,11 @@ public class UserCsvDAOImpl implements UserDAO{
             } else print("Could not delete the user");
         } else print("The user does not exist");
 
+    }
+
+    @Override
+    public Connection getDatabaseConnection() {
+        return getDatabaseConnection();
     }
 
     // generate a user string object to store in the text file

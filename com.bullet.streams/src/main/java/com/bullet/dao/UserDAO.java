@@ -2,6 +2,7 @@ package com.bullet.dao;
 
 import com.bullet.model.User;
 
+import java.sql.Connection;
 import java.util.Map;
 
 /**
@@ -18,4 +19,6 @@ public interface UserDAO {
     Map<Long, User> getAllUsers();
     void update(User user);
     void delete(long id);
+
+    Connection getDatabaseConnection();
 }

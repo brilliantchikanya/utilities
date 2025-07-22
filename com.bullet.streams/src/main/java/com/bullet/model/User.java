@@ -1,7 +1,5 @@
 package com.bullet.model;
 
-import static com.bullet.utils.Print.printf;
-
 /**
  * @author brilliant
  * @author com.bullet
@@ -14,6 +12,12 @@ public class User {
     private String passwd;
 
     public User() {}
+
+    public User(String userName, String passwd) {
+        this.userID = 0;
+        this.userName = userName;
+        this.passwd = passwd;
+    }
 
     public User(long id, String userName, String passwd) {
        this.userID = id;

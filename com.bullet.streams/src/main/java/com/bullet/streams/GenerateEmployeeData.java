@@ -88,20 +88,14 @@ public class GenerateEmployeeData {
 
                 // create an employee object
                 Employee emp = new Employee(person);
-                //emp.setGender(employeeGender);
-                System.out.println("Gender: " + emp.getEmployeeGender());
-                System.out.println("Gender: " + emp.getPerson().getGenderName());
-
                 long empId = Integer.parseInt(id.strip());
                 emp.setEmployeeID(empId);
-                EmployeePersonalDetails employeePersonalDetails = new EmployeePersonalDetails(emp);
-                employeePersonalDetails.setEmployeeEmail(email);
-                employeePersonalDetails.setEmployeePhoneNumber(phone);
+                EmployeePersonalDetails employeePersonalDetails = new EmployeePersonalDetails(1,empId);
+                employeePersonalDetails.getPersonalDetails().getPerson().setEmail(email);
+                employeePersonalDetails.getPersonalDetails().getPerson().setPhoneNumber(phone);
                 EmployeePaymentDetails employeePaymentDetails = new EmployeePaymentDetails(emp);
-                employeePaymentDetails.setDepartment(dpt);
-                employeePaymentDetails.setJobTitle(title);
                 employeePaymentDetails.setBasicSalary(salary);
-                employeePaymentDetails.setDateJoined(MyDate.create(year, month, day));
+                employeePersonalDetails.setDateJoined(MyDate.create(year, month, day));
 
                  //add the employee to the employee list
                 employeeList.add(emp);
@@ -118,7 +112,7 @@ public class GenerateEmployeeData {
         // print out employee details
         for(Employee employee: employeeList) {
             System.out.println(employee.getEmployeeName() +
-                    ", "+ employee.getPerson().getGenderName() +
+                    ", "+ employee.getPerson().getGender().toString() +
                     ", " + employee.getEmployeeID());
         }
 

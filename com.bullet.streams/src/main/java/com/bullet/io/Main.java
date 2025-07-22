@@ -10,9 +10,11 @@ import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) {
-        Employee employee = new Employee(new Person("Tatenda", "Mwando"));
+        //Name name = new Name("Tatenda", "Mwando");
+        Person person = new Person("Tatenda", "Mwando");
+        Employee employee = new Employee(person);
         employee.setEmployeeID(1);
-        employee.setEmployeeGender(Gender.MALE);
+        employee.getPerson().setGender(Gender.MALE);
         System.out.println(employee);
 
 
@@ -25,11 +27,12 @@ public class Main {
         {
             long id = employee.getEmployeeID();
             String fname = employee.getEmployeeFirstName();
-            String gender = employee.getEmployeeGender().toString();
+            String gender = employee.getPerson().getGender().toString();
             out.printf("%d,%s,%s\n", id, fname, gender);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
