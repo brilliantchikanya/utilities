@@ -7,6 +7,12 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author brilliant
+ * @author com.bullet
+ * @since 15-07-2025
+ * */
+
 public class UserDAOMySQL implements UserDAO {
     private final String url = "jdbc:mysql://localhost:3306/demo";
     private final String db_User = "bullet";

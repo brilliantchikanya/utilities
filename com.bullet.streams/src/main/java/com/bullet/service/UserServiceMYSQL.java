@@ -8,13 +8,18 @@ import java.util.Scanner;
 
 import static com.bullet.utils.Print.printnb;
 
+/**
+ * @author brilliant
+ * @author com.bullet
+ * @since 15-07-2025
+ * */
+
 public class UserServiceMYSQL extends UserService {
     private static final Scanner scanner = new Scanner(System.in);
     UserDAO userDAO = new UserDAOMySQL();
     public UserServiceMYSQL(UserDAO userDAO) {
         super(userDAO);
     }
-
     @Override
     protected void updateUser() {
         printnb("    Enter the ID of the user to update: ");

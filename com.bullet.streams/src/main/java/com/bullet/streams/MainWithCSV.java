@@ -10,7 +10,12 @@ import com.bullet.service.UserServiceCSV;
  * @author com.bullet
  * @since 15-07-2025
  * */
-public class Main {
+
+/*
+* This class is the entry-point for the console application based on the
+* CSV format data storage -  a text file database implementation
+* */
+public class MainWithCSV {
     static String path = "com.bullet.streams/src/main/resources/employees.txt";
 
     public static void main(String[] args) {

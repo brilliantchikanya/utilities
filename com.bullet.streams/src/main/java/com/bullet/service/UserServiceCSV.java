@@ -9,6 +9,12 @@ import java.util.Scanner;
 import static com.bullet.utils.Print.print;
 import static com.bullet.utils.Print.printnb;
 
+/**
+ * @author brilliant
+ * @author com.bullet
+ * @since 15-07-2025
+ * */
+
 public class UserServiceCSV extends UserService {
     private static final Scanner scanner = new Scanner(System.in);
 

@@ -16,15 +16,13 @@ import static com.bullet.utils.Print.printnb;
  * */
 public abstract class UserService {
     private static final String path = "com.bullet.streams/src/main/resources/employees.txt";
-    protected UserDAO data;  // = new UserCsvDAOImpl(path);
+    protected UserDAO data;
     private static final Scanner scanner = new Scanner(System.in);
     static boolean done = false;
 
     protected UserService(UserDAO userDAO) {
         this.data = userDAO;
-
     }
-
 
     protected void addUser() {
         printnb("    Enter the name of the user: ");
